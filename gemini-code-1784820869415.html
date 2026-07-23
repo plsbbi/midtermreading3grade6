@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ms Lê Hằng English</title>
+    <!-- Google Fonts: Nunito & Quicksand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-pink: #FF758C;
+            --primary-pink-dark: #E0526B;
+            --secondary-purple: #8854C0;
+            --secondary-purple-dark: #6C3FB8;
+            --accent-yellow: #FDCB6E;
+            --accent-green: #00C9A7;
+            --success-bg: #E6F9F0;
+            --success-border: #00D26A;
+            --success-text: #006633;
+            --error-bg: #FFEAEA;
+            --error-border: #FF4757;
+            --error-text: #900C3F;
+            --pastel-pink-bg: #FFF0F3;
+            --highlight-pink: #FFC0CB;
+            --card-shadow: 0 6px 0 rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(-45deg, #FF758C, #FF7EB3, #8854C0, #7F7FD5);
+            background-size: 300% 300%;
+            animation: gradientBG 14s ease infinite;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.25) 0%, transparent 20%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Ctext x='15' y='35' font-size='24'%3E🏫%3C/text%3E%3Ctext x='80' y='45' font-size='24'%3E✏️%3C/text%3E%3Ctext x='35' y='100' font-size='24'%3E⭐%3C/text%3E%3Ctext x='95' y='110' font-size='24'%3E📚%3C/text%3E%3C/svg%3E");
+            color: #2D3436;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* TOP CONTROL BAR */
+        .top-bar {
+            height: 65px;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
+            border-bottom: 3px solid rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-avatar {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, #8854C0, #FF758C);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 900;
+            box-shadow: 0 3px 0 var(--secondary-purple-dark);
+        }
+
+        .brand-title h1 {
+            font-size: 18px;
+            font-weight: 900;
+            color: #8854C0;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+
+        /* TIMER & PROGRESS */
+        .timer-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #FFF;
+            padding: 6px 16px;
+            border-radius: 30px;
+            border: 2px solid #E2E8F0;
+            box-shadow: 0 3px 0 #CBD5E1;
+        }
+
+        .timer-display {
+            font-size: 17px;
+            font-weight: 900;
+            color: #FF758C;
+            min-width: 60px;
+            font-family: monospace;
+        }
+
+        .btn-timer {
+            background: #FDCB6E;
+            border: none;
+            color: #2D3436;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 3px 0 #E17055;
+            transition: all 0.1s;
+            font-size: 12px;
+        }
+
+        .btn-timer:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #E17055;
+        }
+
+        .progress-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #FFF;
+            padding: 6px 16px;
+            border-radius: 30px;
+            border: 2px solid #E2E8F0;
+            box-shadow: 0 3px 0 #CBD5E1;
+        }
+
+        .progress-bar-outer {
+            width: 140px;
+            height: 14px;
+            background: #E2E8F0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-inner {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #00C9A7, #00D26A);
+            border-radius: 10px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-text {
+            font-size: 13px;
+            font-weight: 800;
+            color: #2D3436;
+        }
+
+        .btn-submit-main {
+            background: #00C9A7;
+            color: white;
+            border: none;
+            padding: 8px 22px;
+            border-radius: 25px;
+            font-weight: 900;
+            font-size: 13px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #00967D;
+            transition: all 0.15s;
+        }
+
+        .btn-submit-main:hover {
+            background: #00B395;
+        }
+
+        .btn-submit-main:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #00967D;
+        }
+
+        /* TAB NAVIGATION */
+        .tab-bar {
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 8px 0;
+            border-bottom: 2px solid #E2E8F0;
+        }
+
+        .tab-btn {
+            background: #FFF;
+            border: 2px solid #E2E8F0;
+            padding: 8px 22px;
+            border-radius: 16px;
+            font-weight: 800;
+            font-size: 14px;
+            color: #636E72;
+            cursor: pointer;
+            box-shadow: 0 3px 0 #CBD5E1;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-btn.active {
+            background: #FF758C;
+            color: white;
+            border-color: #FF758C;
+            box-shadow: 0 3px 0 #E0526B;
+        }
+
+        .tab-btn:hover:not(.active) {
+            transform: translateY(-2px);
+            background: #FFF0F3;
+        }
+
+        /* MAIN SPLIT CONTAINER */
+        .main-container {
+            display: flex;
+            height: calc(100vh - 120px);
+            padding: 12px;
+            gap: 16px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* LEFT & RIGHT PANES */
+        .pane {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 24px;
+            border: 3px solid #FFF;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            overflow-y: auto;
+            padding: 26px;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbars */
+        .pane::-webkit-scrollbar {
+            width: 8px;
+        }
+        .pane::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.03);
+            border-radius: 10px;
+        }
+        .pane::-webkit-scrollbar-thumb {
+            background: #FF758C;
+            border-radius: 10px;
+        }
+
+        /* PASSAGE TYPOGRAPHY */
+        .passage-title {
+            font-size: 22px;
+            font-weight: 900;
+            color: #8854C0;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px dashed #FFD1DC;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .paragraph-card {
+            background: #FFF;
+            border: 2px solid #F0F0F0;
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 18px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .paragraph-card:hover {
+            border-color: #FFD1DC;
+        }
+
+        .paragraph-tag {
+            display: inline-block;
+            background: #8854C0;
+            color: white;
+            font-weight: 800;
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .paragraph-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #2D3436;
+        }
+
+        /* HIGHLIGHTING */
+        mark.pastel-highlight {
+            background-color: var(--highlight-pink);
+            color: #000;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .evidence-pulse {
+            animation: pulseEvidence 2s infinite alternate;
+            border: 3px solid #FF758C !important;
+            background: #FFF0F3 !important;
+        }
+
+        @keyframes pulseEvidence {
+            0% { box-shadow: 0 0 0 0 rgba(255, 117, 140, 0.7); }
+            100% { box-shadow: 0 0 0 15px rgba(255, 117, 140, 0); }
+        }
+
+        /* TRANSLATION BUTTON & BOX */
+        .btn-translate {
+            background: #FFF3BF;
+            border: 2px solid #FAB005;
+            color: #D9480F;
+            font-weight: 800;
+            font-size: 13px;
+            padding: 6px 14px;
+            border-radius: 14px;
+            cursor: pointer;
+            margin-top: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 3px 0 #F59F00;
+            transition: all 0.15s;
+        }
+
+        .btn-translate:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #F59F00;
+        }
+
+        .translation-box {
+            display: none;
+            background: #FFF9DB;
+            border-left: 4px solid #FAB005;
+            padding: 14px;
+            margin-top: 12px;
+            border-radius: 10px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #495057;
+            font-style: italic;
+        }
+
+        /* GLOSSARY TABLE */
+        .glossary-section {
+            margin-top: 30px;
+            background: #FFF;
+            border-radius: 20px;
+            border: 2px solid #E2E8F0;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .glossary-title {
+            font-size: 18px;
+            font-weight: 900;
+            color: #8854C0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .glossary-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .glossary-table th {
+            background: #FFF0F3;
+            color: #FF758C;
+            font-weight: 800;
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 2px solid #FFD1DC;
+        }
+
+        .glossary-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #F1F3F5;
+            color: #2D3436;
+        }
+
+        .glossary-table tr:hover td {
+            background: #FAF5FF;
+        }
+
+        /* EXERCISE QUESTION CARDS */
+        .question-card {
+            background: #FFF;
+            border: 2.5px solid #E2E8F0;
+            border-radius: 20px;
+            padding: 22px;
+            margin-bottom: 22px;
+            box-shadow: 0 6px 0 #E2E8F0;
+            transition: all 0.2s;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .question-number {
+            background: #FF758C;
+            color: white;
+            font-weight: 900;
+            font-size: 13px;
+            padding: 4px 14px;
+            border-radius: 12px;
+            box-shadow: 0 2px 0 #E0526B;
+        }
+
+        .question-type-badge {
+            font-size: 12px;
+            font-weight: 800;
+            color: #8854C0;
+            background: #FAF5FF;
+            padding: 4px 10px;
+            border-radius: 10px;
+            border: 1px solid #E9D5FF;
+        }
+
+        .question-text {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2D3436;
+            line-height: 1.55;
+            margin-bottom: 16px;
+        }
+
+        /* MULTIPLE CHOICE OPTIONS */
+        .mcq-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mcq-option {
+            background: #FAFAFA;
+            border: 2px solid #E2E8F0;
+            border-radius: 14px;
+            padding: 12px 16px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #2D3436;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 3px 0 #E2E8F0;
+        }
+
+        .mcq-option:hover {
+            background: #FFF0F3;
+            border-color: #FF758C;
+            transform: translateY(-2px);
+        }
+
+        .mcq-option.disabled {
+            cursor: not-allowed;
+            opacity: 0.95;
+        }
+
+        .mcq-option.correct {
+            background: var(--success-bg) !important;
+            border-color: var(--success-border) !important;
+            color: var(--success-text) !important;
+            box-shadow: 0 3px 0 var(--success-border) !important;
+        }
+
+        .mcq-option.wrong {
+            background: var(--error-bg) !important;
+            border-color: var(--error-border) !important;
+            color: var(--error-text) !important;
+            box-shadow: 0 3px 0 var(--error-border) !important;
+        }
+
+        .option-prefix {
+            width: 28px;
+            height: 28px;
+            background: white;
+            border: 2px solid #CBD5E1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+
+        /* EXPLANATION BOX */
+        .explanation-card {
+            display: none;
+            background: #FAF5FF;
+            border: 2px solid #E9D5FF;
+            border-radius: 16px;
+            padding: 16px;
+            margin-top: 16px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .explanation-title {
+            font-weight: 900;
+            color: #8854C0;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .exp-item {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            color: #2D3436;
+        }
+
+        .exp-label {
+            font-weight: 800;
+            color: #FF758C;
+        }
+
+        .btn-locate {
+            background: #FF758C;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 3px 0 #E0526B;
+            transition: all 0.15s;
+        }
+
+        .btn-locate:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #E0526B;
+        }
+
+        /* RESULT MODAL */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-card {
+            background: white;
+            border-radius: 30px;
+            padding: 35px;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+            border: 4px solid #FF758C;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            animation: bounceIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        @keyframes bounceIn {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .score-circle {
+            width: 110px;
+            height: 110px;
+            background: linear-gradient(135deg, #FF758C, #8854C0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 34px;
+            font-weight: 900;
+            box-shadow: 0 8px 0 #6C3FB8;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 900;
+            color: #2D3436;
+            margin-bottom: 10px;
+        }
+
+        .modal-desc {
+            font-size: 16px;
+            color: #636E72;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .btn-close-modal {
+            background: #00C9A7;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 20px;
+            font-weight: 900;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #00967D;
+        }
+
+        /* CONFETTI CANVAS */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1001;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CONFETTI CANVAS -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- TOP CONTROL BAR -->
+    <div class="top-bar">
+        <div class="brand-header">
+            <div class="brand-avatar">LH</div>
+            <div class="brand-title">
+                <h1>Ms Lê Hằng English</h1>
+            </div>
+        </div>
+
+        <div class="timer-container">
+            <i class="fa-solid fa-clock" style="color: #FF758C;"></i>
+            <span class="timer-display" id="timer-display">25:00</span>
+            <button class="btn-timer" id="btn-timer-toggle" onclick="toggleTimer()">BẮT ĐẦU TÍNH GIỜ LÀM BÀI</button>
+        </div>
+
+        <div class="progress-box">
+            <i class="fa-solid fa-bullseye" style="color: #00C9A7;"></i>
+            <div class="progress-bar-outer">
+                <div class="progress-bar-inner" id="progress-bar-inner"></div>
+            </div>
+            <span class="progress-text" id="progress-text">0/13 (0%)</span>
+        </div>
+
+        <button class="btn-submit-main" onclick="submitTest()">NỘP BÀI</button>
+    </div>
+
+    <!-- TAB BAR -->
+    <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab(1)" id="tab-btn-1">
+            <i class="fa-solid fa-user-group"></i> Exercise 6: Close Friends
+        </button>
+        <button class="tab-btn" onclick="switchTab(2)" id="tab-btn-2">
+            <i class="fa-solid fa-building-user"></i> Exercise 7: Strangest Houses
+        </button>
+        <button class="tab-btn" onclick="switchTab(3)" id="tab-btn-3">
+            <i class="fa-solid fa-school"></i> Exercise 8: Boarding School
+        </button>
+    </div>
+
+    <!-- MAIN CONTENT SPLIT SCREEN -->
+    <div class="main-container">
+
+        <!-- ==================== EXERCISE 6 PASSAGE ==================== -->
+        <div class="pane passage-pane" id="passage-pane-1">
+            <div class="passage-title">
+                <i class="fa-solid fa-book-open"></i> Exercise 6: Close Friends
+            </div>
+
+            <div class="paragraph-card" id="ex6-para-1">
+                <span class="paragraph-tag">Paragraph 1</span>
+                <p class="paragraph-text">
+                    Do you have any close friends? I think everybody at least has one close friend in their life. And so do I. I have two close friends, Hanh and Mai. We are in the same class at the primary school, and then secondary school. We are also neighbors so we spend most of our time in learning and playing together.
+                </p>
+                <button class="btn-translate" onclick="toggleTranslation('trans-ex6-1')">
+                    <i class="fa-solid fa-language"></i> Mở dịch đoạn này 🌟
+                </button>
+                <div class="translation-box" id="trans-ex6-1">
+                    Bạn có người bạn thân nào không? Tôi nghĩ ai cũng có ít nhất một người bạn thân trong đời. Và tôi cũng vậy. Tôi có hai người bạn thân là Hạnh và Mai. Chúng tôi học cùng lớp từ hồi tiểu học, rồi lên trung học cơ sở. Chúng tôi cũng là hàng xóm nên dành phần lớn thời gian cùng học và chơi với nhau.
+                </div>
+            </div>
+
+            <div class="paragraph-card" id="ex6-para-2">
+                <span class="paragraph-tag">Paragraph 2</span>
+                <p class="paragraph-text">
+                    Hanh is a beautiful girl with big black eyes and an oval rosy face. She is an intelligent student who is always at the top of the class. She likes reading, and she often goes to the library whenever she has free time.
+                </p>
+                <button class="btn-translate" onclick="toggleTranslation('trans-ex6-2')">
+                    <i class="fa-solid fa-language"></i> Mở dịch đoạn này 🌟
+                </button>
+                <div class="translation-box" id="trans-ex6-2">
+                    Hạnh là một cô gái xinh đẹp với đôi mắt đen to và khuôn mặt trái xoan hồng hào. Bạn ấy là một học sinh thông minh, luôn đứng đầu lớp. Hạnh thích đọc sách và thường đến thư viện mỗi khi có thời gian rảnh.
+                </div>
+            </div>
+
+            <div class="paragraph-card" id="ex6-para-3">
+                <span class="paragraph-tag">Paragraph 3</span>
+                <p class="paragraph-text">
+                    Mai isn't as beautiful as Hanh, but she has a lovely smile and looks very healthy. Mai is very sporty. She spends most of her free time playing sports. Mai is a volleyball star of our school. She is also very sociable and has a good sense of humor. Her jokes always make us laugh. I love both of my friends and I always hope our friendship will last forever.
+                </p>
+                <button class="btn-translate" onclick="toggleTranslation('trans-ex6-3')">
+                    <i class="fa-solid fa-language"></i> Mở dịch đoạn này 🌟
+                </button>
+                <div class="translation-box" id="trans-ex6-3">
+                    Mai không xinh đẹp bằng Hạnh, nhưng bạn ấy có nụ cười đáng yêu và trông rất khỏe khoắn. Mai rất yêu thể thao. Bạn ấy dành phần lớn thời gian rảnh để chơi thể thao. Mai là ngôi sao bóng chuyền của trường chúng tôi. Bạn ấy cũng rất hòa đồng và có khiếu hài hước. Những trò đùa của bạn ấy luôn làm chúng tôi bật cười. Tôi yêu cả hai người bạn của mình và luôn mong tình bạn của chúng tôi sẽ kéo dài mãi mãi.
+                </div>
+            </div>
+
+            <!-- GLOSSARY TABLE EXERCISE 6 -->
+            <div class="glossary-section">
+                <div class="glossary-title">
+                    <i class="fa-solid fa-spell-check"></i> Vocabulary Glossary (Exercise 6)
+                </div>
+                <table class="glossary-table">
+                    <thead>
+                        <tr>
+                            <th>Từ vựng</th>
+                            <th>Loại từ</th>
+                            <th>Nghĩa tiếng Việt</th>
+                            <th>Từ đồng nghĩa / Giải thích</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Neighbors</strong></td><td>n</td><td>Hàng xóm</td><td>People living nearby</td></tr>
+                        <tr><td><strong>Oval rosy face</strong></td><td>n phr</td><td>Khuôn mặt trái xoan hồng hào</td><td>Pinkish oval-shaped face</td></tr>
+                        <tr><td><strong>Intelligent</strong></td><td>adj</td><td>Thông minh</td><td>Smart, clever</td></tr>
+                        <tr><td><strong>Sporty</strong></td><td>adj</td><td>Yêu thích thể thao</td><td>Athletic</td></tr>
+                        <tr><td><strong>Sociable</strong></td><td>adj</td><td>Hòa đồng, thân thiện</td><td>Friendly, outgoing</td></tr>
+                        <tr><td><strong>Sense of humor</strong></td><td>n phr</td><td>Khiếu hài hước</td><td>Ability to make people laugh</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==================== EXERCISE 6 QUESTIONS ==================== -->
+        <div class="pane exercise-pane" id="exercise-pane-1">
+            <div class="passage-title" style="color: #FF758C;">
+                <i class="fa-solid fa-pen-to-square"></i> Ex6: True or False
+            </div>
+
+            <!-- Ex6 Q1 -->
+            <div class="question-card" id="qcard-1">
+                <div class="question-header">
+                    <span class="question-number">Question 1</span>
+                    <span class="question-type-badge">True / False</span>
+                </div>
+                <div class="question-text">
+                    1. The writer formed her close friendship at primary school.
+                </div>
+                <div class="mcq-options">
+                    <div class="mcq-option" onclick="checkMCQ(1, 'A', 'ex6-para-1')">
+                        <span class="option-prefix">A</span> True
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(1, 'B', 'ex6-para-1')">
+                        <span class="option-prefix">B</span> False
+                    </div>
+                </div>
+                <div class="explanation-card" id="exp-1"></div>
+            </div>
+
+            <!-- Ex6 Q2 -->
+            <div class="question-card" id="qcard-2">
+                <div class="question-header">
+                    <span class="question-number">Question 2</span>
+                    <span class="question-type-badge">True / False</span>
+                </div>
+                <div class="question-text">
+                    2. Hanh always spends her free time in the library.
+                </div>
+                <div class="mcq-options">
+                    <div class="mcq-option" onclick="checkMCQ(2, 'A', 'ex6-para-2')">
+                        <span class="option-prefix">A</span> True
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(2, 'B', 'ex6-para-2')">
+                        <span class="option-prefix">B</span> False
+                    </div>
+                </div>
+                <div class="explanation-card" id="exp-2"></div>
+            </div>
+
+            <!-- Ex6 Q3 -->
+            <div class="question-card" id="qcard-3">
+                <div class="question-header">
+                    <span class="question-number">Question 3</span>
+                    <span class="question-type-badge">True / False</span>
+                </div>
+                <div class="question-text">
+                    3. Mai is good at sport.
+                </div>
+                <div class="mcq-options">
+                    <div class="mcq-option" onclick="checkMCQ(3, 'A', 'ex6-para-3')">
+                        <span class="option-prefix">A</span> True
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(3, 'B', 'ex6-para-3')">
+                        <span class="option-prefix">B</span> False
+                    </div>
+                </div>
+                <div class="explanation-card" id="exp-3"></div>
+            </div>
+
+            <!-- Ex6 Q4 -->
+            <div class="question-card" id="qcard-4">
+                <div class="question-header">
+                    <span class="question-number">Question 4</span>
+                    <span class="question-type-badge">True / False</span>
+                </div>
+                <div class="question-text">
+                    4. Mai's friends sometimes get tired of her jokes.
+                </div>
+                <div class="mcq-options">
+                    <div class="mcq-option" onclick="checkMCQ(4, 'A', 'ex6-para-3')">
+                        <span class="option-prefix">A</span> True
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(4, 'B', 'ex6-para-3')">
+                        <span class="option-prefix">B</span> False
+                    </div>
+                </div>
+                <div class="explanation-card" id="exp-4"></div>
+            </div>
+        </div>
+
+        <!-- ==================== EXERCISE 7 PASSAGE ==================== -->
+        <div class="pane passage-pane" id="passage-pane-2" style="display: none;">
+            <div class="passage-title">
+                <i class="fa-solid fa-house-chimney"></i> Exercise 7: Strangest Houses in the World
+            </div>
+
+            <div class="paragraph-card" id="ex7-para-1">
+                <span class="paragraph-tag">Dancing House</span>
+                <p class="paragraph-text">
+                    The Dancing House is in the Czech Republic. It was built from 1992 to 1996. The house looks like two people dancing. It is named after the famous dancers Fred Astaire and Ginger Rogers.
+                </p>
+                <button class="btn-translate" onclick="toggleTranslation('trans-ex7-1')">
+                    <i class="fa-solid fa-language"></i> Mở dịch đoạn này 🌟
+                </button>
+                <div class="translation-box" id="trans-ex7-1">
+                    Tòa nhà Nhảy múa (Dancing House) nằm ở Cộng hòa Séc. Nó được xây dựng từ năm 1992 đến năm 1996. Ngôi nhà trông giống như hai người đang nhảy múa. Nó được đặt theo tên của các vũ công nổi tiếng Fred Astaire và Ginger Rogers.
+                </div>
+            </div>
+
+            <div class="paragraph-card" id="ex7-para-2">
+                <span class="paragraph-tag">Ramot Polin Apartments</span>
+                <p class="paragraph-text">
+                    The Ramot Polin Apartments are in Ireland. The buildings look like a beehive. There are 720 apartments, and they were built between 1972 and 1975.
+                </p>
+                <button class="btn-translate" onclick="toggleTranslation('trans-ex7-2')">
+                    <i class="fa-solid fa-language"></i> Mở dịch đoạn này 🌟
+                </button>
+                <div class="translation-box" id="trans-ex7-2">
+                    Khu căn hộ Ramot Polin ở Ireland. Các tòa nhà trông giống như một tổ ong. Có 720 căn hộ, và chúng được xây dựng trong khoảng thời gian từ năm 1972 đến 1975.
+                </div>
+            </div>
+
+            <div class="paragraph-card" id="ex7-para-3">
+                <span class="paragraph-tag">Cube Houses</span>
+                <p class="paragraph-text">
+                    The Cube Houses are in Rotterdam. These houses look like cubes. Each house has three floors. You enter from the ground floor. The living room and kitchen are on the first floor. The bedrooms and bathroom are on the second floor. Some of the houses even have a small garden on the top floor.
+                </p>
+                <button class="btn-translate" onclick="toggleTranslation('trans-ex7-3')">
+                    <i class="fa-solid fa-language"></i> Mở dịch đoạn này 🌟
+                </button>
+                <div class="translation-box" id="trans-ex7-3">
+                    Những Ngôi nhà Lập phương nằm ở Rotterdam. Những ngôi nhà này trông giống như các khối lập phương. Mỗi ngôi nhà có ba tầng. Bạn đi vào từ tầng trệt. Phòng khách và bếp nằm ở tầng một. Các phòng ngủ và phòng tắm nằm ở tầng hai. Một số ngôi nhà thậm chí còn có một khu vườn nhỏ ở tầng trên cùng.
+                </div>
+            </div>
+
+            <!-- GLOSSARY TABLE EXERCISE 7 -->
+            <div class="glossary-section">
+                <div class="glossary-title">
+                    <i class="fa-solid fa-spell-check"></i> Vocabulary Glossary (Exercise 7)
+                </div>
+                <table class="glossary-table">
+                    <thead>
+                        <tr>
+                            <th>Từ vựng</th>
+                            <th>Loại từ</th>
+                            <th>Nghĩa tiếng Việt</th>
+                            <th>Từ đồng nghĩa / Đối nghĩa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Famous</strong></td><td>adj</td><td>Nổi tiếng</td><td>Well-known, renowned</td></tr>
+                        <tr><td><strong>Beehive</strong></td><td>n</td><td>Tổ ong</td><td>Bee's nest structure</td></tr>
+                        <tr><td><strong>Cube</strong></td><td>n</td><td>Khối lập phương</td><td>3D square shape</td></tr>
+                        <tr><td><strong>Small</strong></td><td>adj</td><td>Nhỏ bé</td><td>Opposite: Large, big</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==================== EXERCISE 7 QUESTIONS ==================== -->
+        <div class="pane exercise-pane" id="exercise-pane-2" style="display: none;">
+            <div class="passage-title" style="color: #FF758C;">
+                <i class="fa-solid fa-pen-to-square"></i> Ex7: Multiple Choice
+            </div>
+
+            <!-- Ex7 Q1 -->
+            <div class="question-card" id="qcard-5">
+                <div class="question-header">
+                    <span class="question-number">Question 1 (Ex7)</span>
+                    <span class="question-type-badge">Main Idea</span>
+                </div>
+                <div class="question-text">
+                    1. What is the main topic of the paragraph?
+                </div>
+                <div class="mcq-options">
+                    <div class="mcq-option" onclick="checkMCQ(5, 'A', 'ex7-para-1')">
+                        <span class="option-prefix">A</span> Famous dancers
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(5, 'B', 'ex7-para-1')">
+                        <span class="option-prefix">B</span> Strange houses
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(5, 'C', 'ex7-para-1')">
+                        <span class="option-prefix">C</span> Famous cities
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(5, 'D', 'ex7-para-1')">
+                        <span class="option-prefix">D</span> Interesting apartments
+                    </div>
+                </div>
+                <div class="explanation-card" id="exp-5"></div>
+            </div>
+
+            <!-- Ex7 Q2 -->
+            <div class="question-card" id="qcard-6">
+                <div class="question-header">
+                    <span class="question-number">Question 2 (Ex7)</span>
+                    <span class="question-type-badge">Factual Detail</span>
+                </div>
+                <div class="question-text">
+                    2. Where is the Dancing House located?
+                </div>
+                <div class="mcq-options">
+                    <div class="mcq-option" onclick="checkMCQ(6, 'A', 'ex7-para-1')">
+                        <span class="option-prefix">A</span> Ireland
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(6, 'B', 'ex7-para-1')">
+                        <span class="option-prefix">B</span> Rotterdam
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(6, 'C', 'ex7-para-1')">
+                        <span class="option-prefix">C</span> The Czech Republic
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(6, 'D', 'ex7-para-1')">
+                        <span class="option-prefix">D</span> The United States
+                    </div>
+                </div>
+                <div class="explanation-card" id="exp-6"></div>
+            </div>
+
+            <!-- Ex7 Q3 -->
+            <div class="question-card" id="qcard-7">
+                <div class="question-header">
+                    <span class="question-number">Question 3 (Ex7)</span>
+                    <span class="question-type-badge">Factual Detail</span>
+                </div>
+                <div class="question-text">
+                    3. How many apartments are in the Ramot Polin Apartments?
+                </div>
+                <div class="mcq-options">
+                    <div class="mcq-option" onclick="checkMCQ(7, 'A', 'ex7-para-2')">
+                        <span class="option-prefix">A</span> 72
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(7, 'B', 'ex7-para-2')">
+                        <span class="option-prefix">B</span> 720
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(7, 'C', 'ex7-para-2')">
+                        <span class="option-prefix">C</span> 7,200
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(7, 'D', 'ex7-para-2')">
+                        <span class="option-prefix">D</span> 27
+                    </div>
+                </div>
+                <div class="explanation-card" id="exp-7"></div>
+            </div>
+
+            <!-- Ex7 Q4 -->
+            <div class="question-card" id="qcard-8">
+                <div class="question-header">
+                    <span class="question-number">Question 4 (Ex7)</span>
+                    <span class="question-type-badge">Vocabulary Synonym</span>
+                </div>
+                <div class="question-text">
+                    4. What is the closest meaning to "famous" in this paragraph?
+                </div>
+                <div class="mcq-options">
+                    <div class="mcq-option" onclick="checkMCQ(8, 'A', 'ex7-para-1')">
+                        <span class="option-prefix">A</span> Well-known
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(8, 'B', 'ex7-para-1')">
+                        <span class="option-prefix">B</span> Old
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(8, 'C', 'ex7-para-1')">
+                        <span class="option-prefix">C</span> Large
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(8, 'D', 'ex7-para-1')">
+                        <span class="option-prefix">D</span> Happy
+                    </div>
+                </div>
+                <div class="explanation-card" id="exp-8"></div>
+            </div>
+
+            <!-- Ex7 Q5 -->
+            <div class="question-card" id="qcard-9">
+                <div class="question-header">
+                    <span class="question-number">Question 5 (Ex7)</span>
+                    <span class="question-type-badge">Vocabulary Antonym</span>
+                </div>
+                <div class="question-text">
+                    5. What is the opposite meaning of "small" in this paragraph?
+                </div>
+                <div class="mcq-options">
+                    <div class="mcq-option" onclick="checkMCQ(9, 'A', 'ex7-para-3')">
+                        <span class="option-prefix">A</span> Large
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(9, 'B', 'ex7-para-3')">
+                        <span class="option-prefix">B</span> Short
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(9, 'C', 'ex7-para-3')">
+                        <span class="option-prefix">C</span> Pretty
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(9, 'D', 'ex7-para-3')">
+                        <span class="option-prefix">D</span> Slow
+                    </div>
+                </div>
+                <div class="explanation-card" id="exp-9"></div>
+            </div>
+        </div>
+
+        <!-- ==================== EXERCISE 8 PASSAGE ==================== -->
+        <div class="pane passage-pane" id="passage-pane-3" style="display: none;">
+            <div class="passage-title">
+                <i class="fa-solid fa-school"></i> Exercise 8: Boarding School
+            </div>
+
+            <div class="paragraph-card" id="ex8-options-list">
+                <span class="paragraph-tag">Options List</span>
+                <p class="paragraph-text" style="margin-bottom: 10px;">
+                    <strong>A.</strong> a library, a football field, and a swimming pool<br>
+                    <strong>B.</strong> fun activities<br>
+                    <strong>C.</strong> They have classes in the morning and sports in the afternoon<br>
+                    <strong>D.</strong> The school offers many fun activities on weekends
+                </p>
+            </div>
+
+            <div class="paragraph-card" id="ex8-para-1">
+                <span class="paragraph-tag">Passage with Blanks</span>
+                <p class="paragraph-text">
+                    Tom goes to a boarding school in England. He lives at the school with other students. <strong>(1) ______</strong>. The school is big, with <strong>(2) ______</strong>. In the evenings, he enjoys spending time with his friends. <strong>(3) ______</strong>. He sometimes visits his family or stays at school for <strong>(4) ______</strong>. Tom likes his boarding school because he learns a lot and has many friends.
+                </p>
+                <button class="btn-translate" onclick="toggleTranslation('trans-ex8-1')">
+                    <i class="fa-solid fa-language"></i> Mở dịch đoạn này 🌟
+                </button>
+                <div class="translation-box" id="trans-ex8-1">
+                    Tom đi học tại một trường nội trù ở Anh. Bạn ấy sống tại trường cùng các học sinh khác. Họ có các lớp học vào buổi sáng và chơi thể thao vào buổi chiều. Trường học rất lớn, có một thư viện, một sân bóng đá và một bể bơi. Vào buổi tối, bạn ấy thích dành thời gian chơi với bạn bè. Trường học tổ chức nhiều hoạt động vui chơi vào cuối tuần. Bạn ấy thỉnh thoảng về thăm gia đình hoặc ở lại trường để tham gia các hoạt động vui nhộn. Tom thích trường nội trù của mình vì bạn ấy học được nhiều điều và có nhiều bạn bè.
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== EXERCISE 8 QUESTIONS ==================== -->
+        <div class="pane exercise-pane" id="exercise-pane-3" style="display: none;">
+            <div class="passage-title" style="color: #FF758C;">
+                <i class="fa-solid fa-pen-to-square"></i> Ex8: Complete the Text
+            </div>
+
+            <!-- Ex8 Blank 1 -->
+            <div class="question-card" id="qcard-10">
+                <div class="question-header">
+                    <span class="question-number">Blank (1)</span>
+                    <span class="question-type-badge">Gap Filling</span>
+                </div>
+                <div class="question-text">
+                    Choose the phrase/sentence that fits blank (1):
+                </div>
+                <div class="mcq-options">
+                    <div class="mcq-option" onclick="checkMCQ(10, 'A', 'ex8-para-1')">
+                        <span class="option-prefix">A</span> a library, a football field, and a swimming pool
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(10, 'B', 'ex8-para-1')">
+                        <span class="option-prefix">B</span> fun activities
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(10, 'C', 'ex8-para-1')">
+                        <span class="option-prefix">C</span> They have classes in the morning and sports in the afternoon
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(10, 'D', 'ex8-para-1')">
+                        <span class="option-prefix">D</span> The school offers many fun activities on weekends
+                    </div>
+                </div>
+                <div class="explanation-card" id="exp-10"></div>
+            </div>
+
+            <!-- Ex8 Blank 2 -->
+            <div class="question-card" id="qcard-11">
+                <div class="question-header">
+                    <span class="question-number">Blank (2)</span>
+                    <span class="question-type-badge">Gap Filling</span>
+                </div>
+                <div class="question-text">
+                    Choose the phrase/sentence that fits blank (2):
+                </div>
+                <div class="mcq-options">
+                    <div class="mcq-option" onclick="checkMCQ(11, 'A', 'ex8-para-1')">
+                        <span class="option-prefix">A</span> a library, a football field, and a swimming pool
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(11, 'B', 'ex8-para-1')">
+                        <span class="option-prefix">B</span> fun activities
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(11, 'C', 'ex8-para-1')">
+                        <span class="option-prefix">C</span> They have classes in the morning and sports in the afternoon
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(11, 'D', 'ex8-para-1')">
+                        <span class="option-prefix">D</span> The school offers many fun activities on weekends
+                    </div>
+                </div>
+                <div class="explanation-card" id="exp-11"></div>
+            </div>
+
+            <!-- Ex8 Blank 3 -->
+            <div class="question-card" id="qcard-12">
+                <div class="question-header">
+                    <span class="question-number">Blank (3)</span>
+                    <span class="question-type-badge">Gap Filling</span>
+                </div>
+                <div class="question-text">
+                    Choose the phrase/sentence that fits blank (3):
+                </div>
+                <div class="mcq-options">
+                    <div class="mcq-option" onclick="checkMCQ(12, 'A', 'ex8-para-1')">
+                        <span class="option-prefix">A</span> a library, a football field, and a swimming pool
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(12, 'B', 'ex8-para-1')">
+                        <span class="option-prefix">B</span> fun activities
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(12, 'C', 'ex8-para-1')">
+                        <span class="option-prefix">C</span> They have classes in the morning and sports in the afternoon
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(12, 'D', 'ex8-para-1')">
+                        <span class="option-prefix">D</span> The school offers many fun activities on weekends
+                    </div>
+                </div>
+                <div class="explanation-card" id="exp-12"></div>
+            </div>
+
+            <!-- Ex8 Blank 4 -->
+            <div class="question-card" id="qcard-13">
+                <div class="question-header">
+                    <span class="question-number">Blank (4)</span>
+                    <span class="question-type-badge">Gap Filling</span>
+                </div>
+                <div class="question-text">
+                    Choose the phrase/sentence that fits blank (4):
+                </div>
+                <div class="mcq-options">
+                    <div class="mcq-option" onclick="checkMCQ(13, 'A', 'ex8-para-1')">
+                        <span class="option-prefix">A</span> a library, a football field, and a swimming pool
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(13, 'B', 'ex8-para-1')">
+                        <span class="option-prefix">B</span> fun activities
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(13, 'C', 'ex8-para-1')">
+                        <span class="option-prefix">C</span> They have classes in the morning and sports in the afternoon
+                    </div>
+                    <div class="mcq-option" onclick="checkMCQ(13, 'D', 'ex8-para-1')">
+                        <span class="option-prefix">D</span> The school offers many fun activities on weekends
+                    </div>
+                </div>
+                <div class="explanation-card" id="exp-13"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SUBMISSION RESULT MODAL -->
+    <div class="modal-overlay" id="result-modal">
+        <div class="modal-card">
+            <div class="score-circle" id="modal-score">0/13</div>
+            <div class="modal-title" id="modal-title-text">KẾT QUẢ BÀI THI</div>
+            <div class="modal-desc" id="modal-desc-text">Bạn đã hoàn thành bài thi. Hãy kiểm tra các đáp án chi tiết nhé!</div>
+            <button class="btn-close-modal" onclick="closeModal()">ĐÓNG & XEM LẠI</button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT CORE LOGIC -->
+    <script>
+        // DATA MASTER EXPLANATIONS
+        const EXPLANATIONS = {
+            1: {
+                correct: 'A',
+                quote: 'We are in the same class at the primary school, and then secondary school.',
+                trans: 'Chúng tôi học cùng lớp từ hồi tiểu học, rồi lên trung học cơ sở.',
+                synonyms: 'Họ bắt đầu học cùng lớp và trở thành bạn thân từ trường tiểu học ➔ Phát biểu TRUE (Đúng).'
+            },
+            2: {
+                correct: 'B',
+                quote: '...she often goes to the library whenever she has free time.',
+                trans: '...bạn ấy thường đến thư viện mỗi khi có thời gian rảnh.',
+                synonyms: 'Bài đọc ghi "often" (thường xuyên), đề bài ghi "always" (luôn luôn) ➔ Phát biểu FALSE (Sai).'
+            },
+            3: {
+                correct: 'A',
+                quote: 'Mai is very sporty... Mai is a volleyball star of our school.',
+                trans: 'Mai rất yêu thể thao... Mai là ngôi sao bóng chuyền của trường.',
+                synonyms: 'Mai là ngôi sao bóng chuyền chứng tỏ bạn ấy rất giỏi thể thao (good at sport) ➔ Phát biểu TRUE (Đúng).'
+            },
+            4: {
+                correct: 'B',
+                quote: 'Her jokes always make us laugh.',
+                trans: 'Những trò đùa của bạn ấy luôn làm chúng tôi bật cười.',
+                synonyms: 'Trò đùa luôn khiến mọi người bật cười, không có chuyện phát chán ➔ Phát biểu FALSE (Sai).'
+            },
+            5: {
+                correct: 'B',
+                quote: 'Strangest Houses in the World',
+                trans: 'Những ngôi nhà kỳ lạ nhất trên thế giới.',
+                synonyms: 'Chủ đề chính của bài là về các ngôi nhà kỳ lạ (Strange houses). Chọn B.'
+            },
+            6: {
+                correct: 'C',
+                quote: 'The Dancing House is in the Czech Republic.',
+                trans: 'Tòa nhà Nhảy múa nằm ở Cộng hòa Séc.',
+                synonyms: 'Nằm ở Czech Republic ➔ Chọn C.'
+            },
+            7: {
+                correct: 'B',
+                quote: 'There are 720 apartments...',
+                trans: 'Có 720 căn hộ...',
+                synonyms: 'Con số chính xác là 720 ➔ Chọn B.'
+            },
+            8: {
+                correct: 'A',
+                quote: '...famous dancers Fred Astaire and Ginger Rogers.',
+                trans: '...các vũ công nổi tiếng Fred Astaire và Ginger Rogers.',
+                synonyms: 'famous (nổi tiếng) = well-known (được nhiều người biết đến) ➔ Chọn A.'
+            },
+            9: {
+                correct: 'A',
+                quote: '...a small garden on the top floor.',
+                trans: '...một khu vườn nhỏ ở tầng trên cùng.',
+                synonyms: 'small (nhỏ) ↔ large (lớn, rộng) ➔ Chọn A.'
+            },
+            10: {
+                correct: 'C',
+                quote: 'He lives at the school with other students. (1) They have classes in the morning...',
+                trans: 'Cậu ấy sống tại trường cùng các học sinh khác. Họ có các lớp học vào buổi sáng...',
+                synonyms: 'Chủ ngữ "They" ở đáp án C thay thế cho "other students" ở câu trước. Chọn C.'
+            },
+            11: {
+                correct: 'A',
+                quote: 'The school is big, with (2) a library, a football field, and a swimming pool.',
+                trans: 'Trường học rất lớn, với một thư viện, sân bóng đá và bể bơi.',
+                synonyms: 'Sau giới từ "with" cần một danh từ/cụm danh từ liệt kê cơ sở vật chất. Chọn A.'
+            },
+            12: {
+                correct: 'D',
+                quote: 'In the evenings, he enjoys spending time with his friends. (3) The school offers many fun activities on weekends.',
+                trans: 'Vào buổi tối, cậu ấy thích chơi với bạn. Trường tổ chức nhiều hoạt động vui chơi vào cuối tuần.',
+                synonyms: 'Chuyển tiếp thời gian từ buổi tối (evenings) sang cuối tuần (weekends). Chọn D.'
+            },
+            13: {
+                correct: 'B',
+                quote: '...or stays at school for (4) fun activities.',
+                trans: '...hoặc ở lại trường cho các hoạt động vui chơi.',
+                synonyms: 'Sau giới từ "for" đi kèm cụm danh từ "fun activities". Chọn B.'
+            }
+        };
+
+        let userScores = {};
+        const totalQuestions = 13;
+        let timerSeconds = 25 * 60;
+        let timerInterval = null;
+        let isTimerRunning = false;
+
+        // WEB AUDIO SOUND EFFECTS API
+        function playSound(type) {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const now = ctx.currentTime;
+                if (type === 'correct') {
+                    [523.25, 659.25, 783.99].forEach((freq, i) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, now + i * 0.08);
+                        gain.gain.setValueAtTime(0.12, now + i * 0.08);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.08 + 0.2);
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start(now + i * 0.08);
+                        osc.stop(now + i * 0.08 + 0.2);
+                    });
+                } else {
+                    [320, 260, 200].forEach((freq, i) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'sawtooth';
+                        osc.frequency.setValueAtTime(freq, now + i * 0.1);
+                        gain.gain.setValueAtTime(0.1, now + i * 0.1);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.1 + 0.25);
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start(now + i * 0.1);
+                        osc.stop(now + i * 0.1 + 0.25);
+                    });
+                }
+            } catch (e) {}
+        }
+
+        // TIMER LOGIC
+        function toggleTimer() {
+            const btn = document.getElementById('btn-timer-toggle');
+            if (!isTimerRunning) {
+                isTimerRunning = true;
+                btn.innerText = 'TẠM DỪNG TÍNH GIỜ';
+                btn.style.background = '#FF758C';
+                btn.style.color = 'white';
+                timerInterval = setInterval(() => {
+                    if (timerSeconds > 0) {
+                        timerSeconds--;
+                        updateTimerDisplay();
+                    } else {
+                        clearInterval(timerInterval);
+                        alert("⏰ Đã hết giờ làm bài!");
+                    }
+                }, 1000);
+            } else {
+                isTimerRunning = false;
+                clearInterval(timerInterval);
+                btn.innerText = 'TIẾP TỤC TÍNH GIỜ';
+                btn.style.background = '#FDCB6E';
+                btn.style.color = '#2D3436';
+            }
+        }
+
+        function updateTimerDisplay() {
+            const m = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const s = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timer-display').innerText = `${m}:${s}`;
+        }
+
+        // TAB SWITCHING
+        function switchTab(tabIndex) {
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById(`passage-pane-${i}`).style.display = i === tabIndex ? 'block' : 'none';
+                document.getElementById(`exercise-pane-${i}`).style.display = i === tabIndex ? 'block' : 'none';
+                document.getElementById(`tab-btn-${i}`).classList.toggle('active', i === tabIndex);
+            }
+        }
+
+        // TRANSLATION TOGGLE
+        function toggleTranslation(id) {
+            const box = document.getElementById(id);
+            box.style.display = box.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // TEXT HIGHLIGHTER ON MOUSE SELECTION
+        document.addEventListener('mouseup', function () {
+            const selection = window.getSelection();
+            if (!selection.isCollapsed && selection.rangeCount > 0) {
+                const range = selection.getRangeAt(0);
+                const container = range.commonAncestorContainer;
+                const isPassage = container.nodeType === 3 
+                    ? container.parentNode.closest('.passage-pane')
+                    : container.closest('.passage-pane');
+
+                if (isPassage) {
+                    const mark = document.createElement('mark');
+                    mark.className = 'pastel-highlight';
+                    try {
+                        range.surroundContents(mark);
+                        selection.removeAllRanges();
+                    } catch (e) {}
+                }
+            }
+        });
+
+        // LOCATE EVIDENCE IN PASSAGE / RULE
+        function locateEvidence(paragraphId) {
+            const element = document.getElementById(paragraphId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                element.classList.add('evidence-pulse');
+                setTimeout(() => {
+                    element.classList.remove('evidence-pulse');
+                }, 3000);
+            }
+        }
+
+        // UPDATE PROGRESS BAR
+        function updateProgress() {
+            const answeredCount = Object.keys(userScores).length;
+            const percent = Math.round((answeredCount / totalQuestions) * 100);
+            document.getElementById('progress-bar-inner').style.width = percent + '%';
+            document.getElementById('progress-text').innerText = `${answeredCount}/${totalQuestions} (${percent}%)`;
+        }
+
+        // SHOW DETAILED EXPLANATION BOX
+        function renderExplanation(qNum, isCorrect, paragraphId) {
+            const expData = EXPLANATIONS[qNum];
+            const expCard = document.getElementById(`exp-${qNum}`);
+            expCard.style.display = 'block';
+            expCard.innerHTML = `
+                <div class="explanation-title">
+                    <i class="fa-solid fa-circle-info"></i> PHẦN GIẢI THÍCH CHI TIẾT
+                </div>
+                <div class="exp-item"><span class="exp-label">1. ĐÁP ÁN DÚNG:</span> <strong>${expData.correct}</strong></div>
+                <div class="exp-item"><span class="exp-label">2. DẪN CHỨNG TRONG BÀI:</span> <em>"${expData.quote}"</em></div>
+                <div class="exp-item"><span class="exp-label">3. DỊCH NGHĨA DẪN CHỨNG:</span> ${expData.trans}</div>
+                <div class="exp-item"><span class="exp-label">4. PHÂN TÍCH CHI TIẾT:</span> ${expData.synonyms}</div>
+                <button class="btn-locate" onclick="locateEvidence('${paragraphId}')">
+                    <i class="fa-solid fa-location-crosshairs"></i> 📍 Vị trí dẫn chứng trong đoạn văn
+                </button>
+            `;
+        }
+
+        // CHECK MCQ (SINGLE ATTEMPT)
+        function checkMCQ(qNum, selectedOption, paragraphId) {
+            const card = document.getElementById(`qcard-${qNum}`);
+            if (userScores[qNum] !== undefined) return;
+
+            const expData = EXPLANATIONS[qNum];
+            const isCorrect = selectedOption === expData.correct;
+            const options = card.querySelectorAll('.mcq-option');
+
+            options.forEach((opt, idx) => {
+                const optLetter = String.fromCharCode(65 + idx);
+                opt.classList.add('disabled');
+                opt.style.pointerEvents = 'none';
+                if (optLetter === expData.correct) {
+                    opt.classList.add('correct');
+                } else if (optLetter === selectedOption && !isCorrect) {
+                    opt.classList.add('wrong');
+                }
+            });
+
+            playSound(isCorrect ? 'correct' : 'wrong');
+            userScores[qNum] = isCorrect;
+            updateProgress();
+            renderExplanation(qNum, isCorrect, paragraphId);
+        }
+
+        // SUBMIT & CONFETTI
+        function submitTest() {
+            let correctCount = 0;
+            for (let q in userScores) {
+                if (userScores[q] === true) correctCount++;
+            }
+
+            document.getElementById('modal-score').innerText = `${correctCount}/${totalQuestions}`;
+            let title = "CỐ LÊN NHÉ! 💪";
+            let desc = "Hãy kiểm tra lại kỹ các phần giải thích chi tiết để rút kinh nghiệm nhé!";
+
+            if (correctCount === totalQuestions) {
+                title = "🏆 THIÊN TÀI TIẾNG ANH 13/13!";
+                desc = "Xuất sắc tuyệt đối! Bạn đã trả lời đúng 100% tất cả các câu hỏi!";
+                triggerConfetti();
+            } else if (correctCount >= 9) {
+                title = "🌟 LÀM TỐT LẮM!";
+                desc = "Kết quả rất ấn tượng! Luyện tập thêm một chút nữa là đạt điểm tối đa rồi.";
+                triggerConfetti();
+            }
+
+            document.getElementById('modal-title-text').innerText = title;
+            document.getElementById('modal-desc-text').innerText = desc;
+            document.getElementById('result-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('result-modal').style.display = 'none';
+        }
+
+        // CONFETTI EFFECT
+        function triggerConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particles = [];
+            const colors = ['#FF758C', '#8854C0', '#FDCB6E', '#00C9A7', '#00D26A'];
+
+            for (let i = 0; i < 120; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    size: Math.random() * 8 + 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speedY: Math.random() * 3 + 2,
+                    speedX: Math.random() * 2 - 1
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.y += p.speedY;
+                    p.x += p.speedX;
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+
+                if (particles.some(p => p.y < canvas.height)) {
+                    requestAnimationFrame(animate);
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+            animate();
+        }
+    </script>
+</body>
+</html>
